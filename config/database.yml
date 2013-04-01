@@ -1,0 +1,16 @@
+development:
+  adapter: postgresql
+  host: localhost
+  database: leaderboard_development
+  min_messages: warning
+
+production:
+  adapter: postgresql
+  host: localhost
+  database: leaderboard_development
+
+test:
+  adapter: postgresql
+  host: localhost
+  database: leaderboard_test
+  min_messages: warning
