@@ -10,7 +10,7 @@ class Address < ActiveRecord::Base
   end
   
   def self.value_for_key(address)
-    url = "http://blockchain.info/address/#{address}?format=json"
+    url = "http://blockchain.info/q/addressbalance/#{address}"
     uri = URI(url)
     client = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Get.new(uri.request_uri)
@@ -18,10 +18,9 @@ class Address < ActiveRecord::Base
   
     value = nil
     if response.is_a?(Net::HTTPSuccess)
-      parsed_response = JSON.parse(response.body)
-      value = parsed_response["final_balance"]
+      value = response.body
     else 
-      puts "Error accessing blockchain API"
+      puts "Error accessing blockchain API with URL #{url}"
     end
   
     puts value
