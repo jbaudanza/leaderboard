@@ -5,6 +5,7 @@ gem 'rails', '3.2.13'
 gem 'pg'
 gem 'haml'
 gem 'thin'
+gem 'bitcoin-ruby', :require => 'bitcoin'
 
 # Gems used only for assets and not required
 # in production environments by default.
