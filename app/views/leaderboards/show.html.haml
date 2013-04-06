@@ -1,4 +1,23 @@
-- @identities.each do |identity|
-  = identity.name
-  = identity.balance_in_bitcoin
-  %br 
+%table.leaderboard
+  %thead
+    %tr
+      %th
+      %th Name
+      %th Balance
+  %tbody
+    - @identities.each_with_index do |identity, index|
+      %tr
+        %td= index + 1
+        %td= link_to identity.name, identity_path(identity)
+        %td= bitcoin_balance(identity.balance)
+
+/= link_to 'Add yourself', new_identity_path
+
+%h2 Add yourself
+= form_for Identity.new do |form|
+  = form.label :name, "What's your name?"
+  = form.text_field :name
+
+%p
+  Your balance is 0.0 BTC. You are ranked #6 of 6. You can add more addresses or transfer btc to your existing addresses to move
+  up the leaderboard.

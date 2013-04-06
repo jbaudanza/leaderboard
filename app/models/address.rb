@@ -1,6 +1,6 @@
 class Address < ActiveRecord::Base
   belongs_to :identity
-  attr_accessible :balance
+  attr_accessible :balance, :address
   
   def update_balance
     value = Address.value_for_key(address)

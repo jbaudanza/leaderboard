@@ -1,0 +1,13 @@
+table.leaderboard {
+  th {
+    text-align: left;
+  }
+  
+  td {
+    padding: 5px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #eee;
+  }
+}
