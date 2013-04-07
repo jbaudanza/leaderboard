@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/jbaudanza/faye-websocket-ruby.git
+  revision: af9547510e5478451769c9e03be3fbcb5103fd55
+  specs:
+    faye-websocket (0.4.7)
+      eventmachine (>= 0.12.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -48,8 +55,6 @@ GEM
     eventmachine (1.0.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    faye-websocket (0.4.6)
-      eventmachine (>= 0.12.0)
     haml (4.0.1)
       tilt
     hike (1.2.1)
@@ -141,7 +146,7 @@ DEPENDENCIES
   bitcoin-ruby
   chunky_png
   coffee-rails (~> 3.2.1)
-  faye-websocket
+  faye-websocket!
   haml
   jquery-rails
   pg
