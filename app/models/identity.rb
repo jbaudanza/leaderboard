@@ -50,6 +50,8 @@ class Identity < ActiveRecord::Base
         end
       end
     end
+  
+    update_balance
   end
 
   def import_transaction(input)
