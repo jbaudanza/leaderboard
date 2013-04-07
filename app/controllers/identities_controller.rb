@@ -5,6 +5,12 @@ class IdentitiesController < ApplicationController
 
     redirect_to root_url
   end
+
+  def refresh
+    @identity = Identity.find(params[:id])
+    @identity.refresh
+    render :json => @identity
+  end
   
   def new
     @identity = Identity.new

@@ -38,6 +38,27 @@ class Identity < ActiveRecord::Base
     super(options.merge(:include => :addresses))
   end
 
+  def refresh
+    return unless validation_address.present?
+
+    Net::HTTP.start('blockchain.info', 80) do |http|
+      response = http.get("/address/#{validation_address}?format=json")
+      json = JSON.parse(response.body)
+      json['txs'].each do |transaction|
+        transaction['inputs'].each do |input|
+          import_transaction(input)
+        end
+      end
+    end
+  end
+
+  def import_transaction(input)
+    address = input['prev_out']['addr']
+    Rails.logger.info("Adding address #{address} to identity #{id}")
+    # XXX: this should be find_or_create_by
+    addresses.create!(:address => address)
+  end
+
   def assign_validation_address
     return if validation_address.present?
 
