@@ -55,8 +55,7 @@ class Identity < ActiveRecord::Base
   def import_transaction(input)
     address = input['prev_out']['addr']
     Rails.logger.info("Adding address #{address} to identity #{id}")
-    # XXX: this should be find_or_create_by
-    addresses.create!(:address => address)
+    addresses.find_or_create_by_address!(:address => address)
   end
 
   def assign_validation_address

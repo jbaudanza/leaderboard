@@ -45,7 +45,7 @@ class Worker
       message['x']['inputs'].each do |input|
         address = input['prev_out']['addr']
         Rails.logger.info("Adding address #{address} to identity #{identity.id}")
-        identity.addresses.create!(:address => address)
+        identity.addresses.find_or_create_by_address!(:address => address)
       end
       identity.update_balance
     end
