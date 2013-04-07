@@ -6,6 +6,7 @@ gem 'pg'
 gem 'haml'
 gem 'thin'
 gem 'bitcoin-ruby', :require => 'bitcoin'
+gem 'faye-websocket'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -17,6 +18,10 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :test, :development do
+  gem "rspec-rails", "~> 2.0"
 end
 
 gem 'jquery-rails'

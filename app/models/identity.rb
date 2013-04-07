@@ -35,6 +35,8 @@ class Identity < ActiveRecord::Base
   end
 
   def assign_validation_address
+    return if validation_address.present?
+
     transaction do
       validation_address = ValidationAddress.limit(1).first
       raise 'No more validation addresses to assign' unless validation_address
