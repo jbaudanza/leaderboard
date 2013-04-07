@@ -1,6 +1,6 @@
 class LeaderboardsController < ApplicationController
   def show
-    Worker.start_timer
+    Worker.shared_instance
     @identities = Identity.leaderboard.limit(10)
   end
 end

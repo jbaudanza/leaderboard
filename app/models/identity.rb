@@ -68,5 +68,6 @@ class Identity < ActiveRecord::Base
       update_attribute(:validation_address, validation_address.address)
       validation_address.destroy
     end
+    Worker.shared_instance.subscribe_address(validation_address)
   end
 end

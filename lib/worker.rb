@@ -25,8 +25,14 @@ class Worker
     end
   end
 
-  def self.start_timer
+  def self.shared_instance
     @@worker ||= Worker.new
+  end
+    
+  def subscribe_address(address)
+    message = '{"op":"addr_sub", "addr":"' + address + '"}'
+    @ws.send(message)
+    Rails.logger.info("Subscribing to address #{address}")
   end
 
   def handle_message(json)
