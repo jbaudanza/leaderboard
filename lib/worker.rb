@@ -41,6 +41,7 @@ class Worker
         Rails.logger.info("Adding address #{address} to identity #{identity.id}")
         identity.addresses.create!(:address => address)
       end
+      identity.update_balance
     end
   end
 end

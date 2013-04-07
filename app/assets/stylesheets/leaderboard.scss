@@ -1,13 +1,51 @@
-table.leaderboard {
-  th {
-    text-align: left;
+ul.leaderboard {
+  width: 274px;
+  li {
+    padding: 15px;
   }
-  
-  td {
-    padding: 5px;
+  li:nth-child(even) {
+    background-color: #eee;
+  }
+  li.selected {
+    background-color: #eb611f;
+    font-size: 34px;
+  }
+  form {
+    display: inline;
+  }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+#profile {
+  position: fixed;
+  top: 80px;
+  left: 280px;
+  background-color: #eb611f;
+
+  width: 500px;
+  padding: 15px;
+
+  .balance {
+    font-size: 53px;
   }
 
-  tr:nth-child(even) {
-    background-color: #eee;
+  .twitter {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    img {
+      display: block;
+      width: 125px;
+      height: 125px;
+    }
+  }
+
+  a {
+    color: black;
   }
 }

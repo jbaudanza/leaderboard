@@ -8,6 +8,12 @@ gem 'thin'
 gem 'bitcoin-ruby', :require => 'bitcoin'
 gem 'faye-websocket'
 
+# Gems for QR codes
+gem 'barby', :require => false
+gem 'rqrcode'
+gem 'chunky_png'
+
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

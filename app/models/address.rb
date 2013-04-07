@@ -23,7 +23,6 @@ class Address < ActiveRecord::Base
       puts "Error accessing blockchain API with URL #{url}"
     end
   
-    puts value
     value
   end
   

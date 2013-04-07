@@ -1,11 +1,15 @@
-= @identity.name
+%em= @identity.name
+is ranked #5 out of 6.
 
-%h2 Addresses
+%h3 Addresses
 %ul
   - @identity.addresses.each do |address|
     %li
       = address.address
       = bitcoin_balance(address.balance)
+
+%p
+  Your balance is 0.0 BTC. You are ranked #6 of 6. You can add more addresses or transfer btc to your existing addresses to move up the leaderboard.
 
 %p
   To add an address, send a payment of 0.00001 BTC to:

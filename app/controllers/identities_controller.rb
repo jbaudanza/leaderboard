@@ -2,7 +2,8 @@ class IdentitiesController < ApplicationController
   def create
     @identity = Identity.new(params[:identity])
     @identity.save!
-    render :text => 'It worked!'
+
+    redirect_to root_url
   end
   
   def new
@@ -11,5 +12,6 @@ class IdentitiesController < ApplicationController
   
   def show
     @identity = Identity.find(params[:id])
+    render :json => @identity
   end
 end

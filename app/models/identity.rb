@@ -34,6 +34,10 @@ class Identity < ActiveRecord::Base
     end
   end
 
+  def as_json(options={})
+    super(options.merge(:include => :addresses))
+  end
+
   def assign_validation_address
     return if validation_address.present?
 

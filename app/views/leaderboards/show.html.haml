@@ -1,23 +1,26 @@
-%table.leaderboard
-  %thead
-    %tr
-      %th
-      %th Name
-      %th Balance
-  %tbody
-    - @identities.each_with_index do |identity, index|
-      %tr
-        %td= index + 1
-        %td= link_to identity.name, identity_path(identity)
-        %td= bitcoin_balance(identity.balance)
+%h1
+  Bitcoin 100
 
-/= link_to 'Add yourself', new_identity_path
+%ul.leaderboard
+  - @identities.each_with_index do |identity, index|
+    %li(data-id="#{identity.id}" class="#{'selected' if index == 0}")
+      = index + 1
+      = identity.name
+  %li
+    = form_for Identity.new do |form|
+      = form.text_field :name, :placeholder => 'Add your twitter handle'
 
-%h2 Add yourself
-= form_for Identity.new do |form|
-  = form.label :name, "What's your name?"
-  = form.text_field :name
+#profile
+  .balance
 
-%p
-  Your balance is 0.0 BTC. You are ranked #6 of 6. You can add more addresses or transfer btc to your existing addresses to move
-  up the leaderboard.
+  .twitter
+    %img
+    %a
+
+  %ul.addresses
+
+  In order to compute your balance, we need to verify your wallet addresses.
+  To do this, send any fraction of a bitcoin to this unique address:
+
+  %h5.validation-address
+  %img.qr-code
