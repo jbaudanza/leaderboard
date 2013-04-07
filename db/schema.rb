@@ -22,10 +22,11 @@ ActiveRecord::Schema.define(:version => 20130406234009) do
   end
 
   create_table "identities", :force => true do |t|
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-    t.integer  "balance",    :limit => 8
-    t.string   "name",                    :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.integer  "balance",            :limit => 8
+    t.string   "name",                            :null => false
+    t.string   "validation_address"
   end
 
   create_table "validation_addresses", :force => true do |t|

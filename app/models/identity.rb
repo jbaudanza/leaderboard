@@ -5,7 +5,8 @@ class Identity < ActiveRecord::Base
   attr_accessor :address_blob
   
   after_create :update_balance
-  
+  after_create :assign_validation_address
+
   before_save :parse_address_blob
   
   scope :leaderboard, -> {
@@ -30,6 +31,15 @@ class Identity < ActiveRecord::Base
     
     address_blob.split.each do |text|
       addresses.build(:address => text)
+    end
+  end
+
+  def assign_validation_address
+    transaction do
+      validation_address = ValidationAddress.limit(1).first
+      raise 'No more validation addresses to assign' unless validation_address
+      update_attribute(:validation_address, validation_address.address)
+      validation_address.destroy
     end
   end
 end
