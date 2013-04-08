@@ -3,6 +3,14 @@ body {
   color: #333;
 }
 
+a {
+  color: #333;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 // Taken from http://www.ecogex.com/bitcoin/
 $btc-orange:     #eb611f;
 $btc-dark-grey:  #848484;
@@ -62,13 +70,21 @@ ul {
       font-size: 53px;
     }
 
-    ul.addresses {
+    .addresses-wrapper {
       background-color: $btc-light-grey;
       border: 1px solid $btc-dark-grey;
-      width: 400px;
       padding: 10px;
-      li.empty {
-        font-style: italic;
+      width: 347px;
+
+      ul.addresses {
+        li.empty {
+          font-style: italic;
+        }
+      }
+      a {
+        text-align: center;
+        margin: 5px 0;
+        display: block;
       }
     }
 
@@ -83,8 +99,5 @@ ul {
       }
     }
 
-    a {
-      color: black;
-    }
   }
 }

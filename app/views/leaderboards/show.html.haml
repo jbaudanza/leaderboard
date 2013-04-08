@@ -17,16 +17,15 @@
 
   #profile
     .balance
+    %a.refresh(href='#') refresh balance
 
     .twitter
       %img
       %a
 
-    %ul.addresses
-
-    %a.refresh(href='#') refresh balance
-    &middot;
-    %a.add-address(href='#') add a wallet address
+    .addresses-wrapper
+      %ul.addresses
+      %a.add-address(href='#') add a wallet address
 
   #receive-address-dialog(title='Add a new wallet address')
     In order to compute your balance, we need to verify your wallet addresses.

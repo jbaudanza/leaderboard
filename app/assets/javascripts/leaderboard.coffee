@@ -5,7 +5,7 @@ jQuery ->
 
   populateProfile = (json) ->
     # Balance
-    text = (json['balance'] * 0.00000001).toFixed() + " BTC"
+    text = (json['balance'] * 0.00000001).toFixed(2) + " BTC"
     $profile.find('.balance').text(text)
 
     # Addresses
@@ -19,7 +19,7 @@ jQuery ->
       for address in json['addresses']
         addLi(address.address, 'address')
     else
-      addLi("This user hasn't verified any wallet addresses yet.", 'empty')
+      addLi("This user hasn't verified any wallet addresses.", 'empty')
 
     $dialog.find('.validation-address').text(json['validation_address'])
 
