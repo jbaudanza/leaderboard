@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.browser
 //= require jquery.ui.dialog
 //= require_tree .

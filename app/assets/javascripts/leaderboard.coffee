@@ -68,4 +68,7 @@ jQuery ->
      $dialog.dialog('open')
     false
 
-  $dialog.dialog(autoOpen: false)
+  $dialog.dialog(
+      autoOpen: false
+      modal: true
+      width: 500)
