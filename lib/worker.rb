@@ -1,5 +1,5 @@
 class Worker
-  @@worker = nil
+  @@instance = nil
 
   def initialize
     @ws = Faye::WebSocket::Client.new('ws://ws.blockchain.info/inv')
@@ -15,7 +15,11 @@ class Worker
     end
 
     @ws.onmessage = lambda do |event|
-      handle_message(event.data)
+      begin
+        handle_message(event.data)
+      rescue e
+        Rails.logger.error(e)
+      end
     end
 
     @ws.onclose = lambda do |event|

@@ -1,18 +1,15 @@
-ul.leaderboard {
-  width: 274px;
-  li {
-    padding: 15px;
-  }
-  li:nth-child(even) {
-    background-color: #eee;
-  }
-  li.selected {
-    background-color: #eb611f;
-    font-size: 34px;
-  }
-  form {
-    display: inline;
-  }
+body {
+  font-family: "Lora", serif;
+  color: #333;
+}
+
+// Taken from http://www.ecogex.com/bitcoin/
+$btc-orange:     #eb611f;
+$btc-dark-grey:  #848484;
+$btc-light-grey: #dbdbdb;
+
+.validation-address, .address {
+  font-family: "andale mono", "lucida console", monospace;
 }
 
 ul {
@@ -21,31 +18,73 @@ ul {
   list-style-type: none;
 }
 
-#profile {
-  position: fixed;
-  top: 80px;
-  left: 280px;
-  background-color: #eb611f;
+.header, .content {
+  position: relative;
+  width: 920px;
+  margin: 0 auto;
+}
 
-  width: 500px;
-  padding: 15px;
-
-  .balance {
-    font-size: 53px;
+.header {
+  margin-bottom: 5px;
+  h1, .tagline {
+    display: inline;
   }
+}
 
-  .twitter {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    img {
-      display: block;
-      width: 125px;
-      height: 125px;
+.content {
+  ul.leaderboard {
+    width: 274px;
+    li {
+      cursor: pointer;
+      padding: 15px;
+    }
+    li:nth-child(even) {
+      background-color: $btc-light-grey;
+    }
+    li.selected {
+      background-color: $btc-orange;
+      font-size: 34px;
+    }
+    form {
+      display: inline;
     }
   }
 
-  a {
-    color: black;
+  #profile {
+    position: absolute;
+    top: 0px;
+    left: 274px;
+    right: 0;
+    background-color: $btc-orange;
+    padding: 15px;
+
+    .balance {
+      font-size: 53px;
+    }
+
+    ul.addresses {
+      background-color: $btc-light-grey;
+      border: 1px solid $btc-dark-grey;
+      width: 400px;
+      padding: 10px;
+      li.empty {
+        font-style: italic;
+      }
+    }
+
+    .twitter {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      img {
+        display: block;
+        width: 125px;
+        height: 125px;
+      }
+    }
+
+    a {
+      color: black;
+    }
   }
 }

@@ -1,33 +1,38 @@
-%h1
-  Bitcoin 100
+.header
+  %h1
+    Bitcoin 100
 
-%ul.leaderboard
-  - @identities.each_with_index do |identity, index|
-    %li(data-id="#{identity.id}" class="#{'selected' if index == 0}")
-      = index + 1
-      = identity.name
-  %li
-    = form_for Identity.new do |form|
-      = form.text_field :name, :placeholder => 'Add your twitter handle'
+  .tagline
+    put your bitcoin where your twitter is
 
-#profile
-  .balance
+.content
+  %ul.leaderboard
+    - @identities.each_with_index do |identity, index|
+      %li(data-id="#{identity.id}" class="#{'selected' if index == 0}")
+        = index + 1
+        = identity.name
+    %li
+      = form_for Identity.new do |form|
+        = form.text_field :name, :placeholder => 'Add your twitter handle'
 
-  .twitter
-    %img
-    %a
+  #profile
+    .balance
 
-  %ul.addresses
-  
-  %br
-  %br
-  %br
-  %br  
-  %br
-  In order to compute your balance, we need to verify your wallet addresses.
-  To do this, send any fraction of a bitcoin to this unique address:
+    .twitter
+      %img
+      %a
 
-  %h5.validation-address
-  %img.qr-code
+    %h3 Wallet Addresses
+    %ul.addresses
 
-  %a.refresh(href='#') refresh
+    %a.refresh(href='#') refresh balance
+    &middot;
+    %a.add-address(href='#') add a wallet address
+
+  #receive-address-dialog
+    In order to compute your balance, we need to verify your wallet addresses.
+    To do this, send any fraction of a bitcoin to this unique address:
+
+    %h5.validation-address
+    %img.qr-code
+
