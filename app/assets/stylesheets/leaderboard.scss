@@ -46,6 +46,9 @@ ul {
       cursor: pointer;
       padding: 15px;
     }
+    li:nth-child(odd) {
+      background-color: #eee;
+    }
     li:nth-child(even) {
       background-color: $btc-light-grey;
     }

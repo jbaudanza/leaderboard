@@ -41,17 +41,25 @@ class Worker
 
   def handle_message(json)
     message = JSON.parse(json)
+    in_addresses = message['x']['inputs'].map{|input| input['prev_out']['addr']}
+    out_addresses = message['x']['out'].map{|output| output['addr'] }
 
-    addresses = message['x']['out'].collect{ |output| output['addr'] }
-    identity = Identity.find_by_validation_address(addresses)
+    identity = Identity.find_by_validation_address(out_addresses)
 
+    # See if this transaction references a validation addresses
     if identity
-      message['x']['inputs'].each do |input|
-        address = input['prev_out']['addr']
+      in_addresses.each do |address|
         Rails.logger.info("Adding address #{address} to identity #{identity.id}")
         identity.addresses.find_or_create_by_address!(:address => address)
       end
       identity.update_balance
+    else
+      # Otherwise, check if the transaction references any user wallet addresses
+      addresses = Address.where(:address => in_addresses + out_addresses)
+      addresses.each do |address|
+        Rails.logger.info("Updating balance for #{address.address}")
+        address.identity.update_balance
+      end
     end
   end
 end

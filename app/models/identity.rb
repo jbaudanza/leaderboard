@@ -8,16 +8,16 @@ class Identity < ActiveRecord::Base
   after_create :assign_validation_address
 
   before_save :parse_address_blob
+  validates_uniqueness_of :name
   
   scope :leaderboard, -> {
     where('balance IS NOT NULL').order('balance DESC')
   }
   
   def update_balance
-    total = 0
-    self.addresses.each do |address|
+    total = self.addresses.sum do |address|
       address.update_balance
-      total = total + address.balance
+      address.balance
     end
     update_attributes(:balance => total)
   end

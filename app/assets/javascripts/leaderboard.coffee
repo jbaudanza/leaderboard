@@ -33,8 +33,9 @@ jQuery ->
         "https://api.twitter.com/1/users/profile_image?screen_name=#{twitterHandle}&size=bigger")
 
     $twitter.find('a')
-      .attr('href', "http://www.twitter.com/#{twitterHandle}")
-      .text('@' + twitterHandle)
+        .attr('href', "http://www.twitter.com/#{twitterHandle}")
+    $twitter.find('.handle')
+        .text('@' + twitterHandle)
 
 
   undefined
