@@ -33,6 +33,10 @@ class Identity < ActiveRecord::Base
       addresses.build(:address => text)
     end
   end
+  
+  def rank
+    Identity.where('balance > ?', self.balance).count + 1
+  end
 
   def as_json(options={})
     super(options.merge(:include => :addresses))

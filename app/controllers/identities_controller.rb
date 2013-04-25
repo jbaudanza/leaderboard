@@ -3,7 +3,7 @@ class IdentitiesController < ApplicationController
     @identity = Identity.new(params[:identity])
     @identity.save!
 
-    redirect_to root_url
+    redirect_to name_url(@identity.name)
   end
 
   def refresh

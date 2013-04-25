@@ -5,4 +5,8 @@ Leaderboard::Application.routes.draw do
     post :refresh, :on => :member
   end
   resources :qr_codes
+  
+  # www.bitcoinleaderboard.com/mattmatt
+  get '/:name', :to => 'leaderboards#show', :as => 'name'
+  
 end

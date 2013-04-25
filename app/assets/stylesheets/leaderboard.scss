@@ -44,6 +44,18 @@ ul {
   }
 }
 
+.signup {
+  display: inline-block;
+  width: 300px;
+  margin-left: 220px - 12px*2;
+  padding: 10px 12px;
+  @include border-radius(7px);
+  @include background-image(linear-gradient(top,#fff 0,#ddd 100%));
+  
+  input[type=submit] {
+  }
+}
+
 .content {
   ul.leaderboard {
     width: 274px;

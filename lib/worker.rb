@@ -17,7 +17,7 @@ class Worker
     @ws.onmessage = lambda do |event|
       begin
         handle_message(event.data)
-      rescue e
+      rescue Exception=>e
         Rails.logger.error(e)
       end
     end

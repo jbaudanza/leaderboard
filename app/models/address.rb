@@ -20,7 +20,7 @@ class Address < ActiveRecord::Base
     if response.is_a?(Net::HTTPSuccess)
       value = response.body
     else 
-      Rails.logger.error "Error accessing blockchain API with URL #{url}"
+      Rails.logger.error "Error response code:#{response.code} accessing blockchain API with URL #{url}"
       nil
     end
   

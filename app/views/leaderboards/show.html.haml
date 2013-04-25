@@ -4,16 +4,19 @@
 
   .tagline
     put your bitcoin where your twitter is
-
+  
+  .signup
+    .h2 Join the Leaderboard
+    = form_for Identity.new do |form|
+      = form.text_field :name, :placeholder => 'Add your twitter handle'
+      = form.submit
+    
 .content
   %ul.leaderboard
     - @identities.each_with_index do |identity, index|
-      %li(data-id="#{identity.id}" class="#{'selected' if index == 0}")
-        = index + 1
+      %li(data-id="#{identity.id}" class="#{'selected' if identity == @identity}")
+        = identity.rank
         = identity.name
-    %li
-      = form_for Identity.new do |form|
-        = form.text_field :name, :placeholder => 'Add your twitter handle'
 
   #profile
     .balance
