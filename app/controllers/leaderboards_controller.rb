@@ -1,9 +1,7 @@
 class LeaderboardsController < ApplicationController
   def show
-    #  find the identity in the whole set
-    # grab a subset, say 5 before and 24 after
-    @identities = Identity.leaderboard.limit(10)
-    
+      @identities = Identity.leaderboard
+          
     if params[:name]
       @identity = Identity.where(['LOWER(name) = ?', params[:name].downcase]).first!  
     else
