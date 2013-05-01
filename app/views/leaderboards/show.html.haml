@@ -17,7 +17,7 @@
     - @identities.each_with_index do |identity, index|
       %li(data-id="#{identity.to_param}" class="#{'selected' if identity == @identity}")
         =link_to name_path(identity.name) do
-          = identity.rank
+          = index + 1
           = identity.name
 
   #profile

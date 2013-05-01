@@ -66,7 +66,6 @@ ul {
     width: 274px;
     li {
       cursor: pointer;
-      padding: 15px;
     }
     li:nth-child(odd) {
       background-color: #eee;
@@ -83,6 +82,7 @@ ul {
     }
     a {
       display: block;
+      padding: 15px;
     }
   }
 
