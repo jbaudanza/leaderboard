@@ -32,22 +32,26 @@ ul {
 }
 
 .header, .content {
-  position: relative;
   width: 920px;
   margin: 0 auto;
 }
 
 .header {
+  position: relative;
   margin-bottom: 5px;
+  height: 70px;
   h1, .tagline {
     display: inline;
+    position: relative;
+    height: 70px;
   }
 }
 
 .signup {
-  display: inline-block;
+  position: absolute;
+  right: 0px;
+  top: 0px;
   width: 300px;
-  margin-left: 220px - 12px*2;
   padding: 10px 12px;
   @include border-radius(7px);
   @include background-image(linear-gradient(top,#fff 0,#ddd 100%));
@@ -57,6 +61,7 @@ ul {
 }
 
 .content {
+  position: relative;
   ul.leaderboard {
     width: 274px;
     li {
