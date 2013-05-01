@@ -59,7 +59,7 @@ jQuery ->
     false
 
   $profile.on 'click', '.add-address', ->
-     $dialog.dialog('open')
+    $dialog.dialog('open')
     false
 
   $dialog.dialog(
