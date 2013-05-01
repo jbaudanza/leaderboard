@@ -13,6 +13,11 @@ gem 'barby', :require => false
 gem 'rqrcode'
 gem 'chunky_png'
 
+# Gems for Twitter Auth
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'twitter'
+gem 'twitter-text'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -29,6 +34,7 @@ end
 
 group :test, :development do
   gem "rspec-rails", "~> 2.0"
+  gem "dotenv-rails"
 end
 
 gem 'jquery-rails'

@@ -8,9 +8,9 @@
   
   .signup
     .h2 Join the Leaderboard
-    = form_for Identity.new do |form|
-      = form.text_field :name, :placeholder => 'Add your twitter handle'
-      = form.submit
+    
+    =link_to '/auth/twitter' do
+      = image_tag "sign-in-with-twitter-gray.png"
     
 .content
   %ul.leaderboard

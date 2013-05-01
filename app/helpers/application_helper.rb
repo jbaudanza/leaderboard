@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include Twitter::Autolink
   def bitcoin_balance(satoshis)
     if satoshis
       number_with_precision(0.00000001 * satoshis, :precision => 5)
