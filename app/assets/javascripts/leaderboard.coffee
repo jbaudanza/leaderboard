@@ -77,4 +77,6 @@ jQuery ->
       $profile.show()
       fetchProfile(name)
 
+    @use(Davis.googleAnalytics)
+
   app.start()

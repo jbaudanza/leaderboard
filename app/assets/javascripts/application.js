@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require jquery.browser
 //= require jquery.ui.dialog
+//= require davis
+//= require davis.google_analytics
 //= require_tree .
