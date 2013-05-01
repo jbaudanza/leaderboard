@@ -61,5 +61,12 @@ module Leaderboard
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Start the worker after EventMachine is started
+    config.after_initialize do
+      EM.next_tick do
+        Worker.shared_instance
+      end
+    end
   end
 end

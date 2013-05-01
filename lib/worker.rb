@@ -2,16 +2,41 @@ class Worker
   @@instance = nil
 
   def initialize
+    @reconnect_timer = 1
+    connect
+  end
+
+  def reconnect
+    @ws.onclose = nil
+    @ws.onmessage = nil
+    @ws.onerror = nil
+    @ws = nil
+
+    Rails.logger.info("WebSocket: sleeping for #{@reconnect_timer} seconds")
+    EM.add_timer(@reconnect_timer) do
+      connect
+    end
+
+    @reconnect_timer *= 2
+
+    if @reconnect_timer > 2.minutes
+      @reconnect_timer = 1
+    end
+  end
+
+  def connect
+    Rails.logger.info("WebSocket: connecting")
     @ws = Faye::WebSocket::Client.new('ws://ws.blockchain.info/inv')
 
     @ws.onopen = lambda do |event|
-      Rails.logger.info("Connected to blockchain.info WebSocket")
-      @ws.send('{"op":"unconfirmed_sub"}')
-      #ws.send('{"op":"addr_sub", "addr":"1ApixU1aYsHUdJ4Em64xsG6XtqTzjAXACr"}')
+      Rails.logger.info("WebSocket: connected")
+      send_json(op:'unconfirmed_sub')
+      @reconnect_timer = 1
     end
 
     @ws.onerror = lambda do |event|
-      Rails.logger.error("WebSocket error")
+      Rails.logger.error("WebSocket: error")
+      reconnect
     end
 
     @ws.onmessage = lambda do |event|
@@ -24,8 +49,8 @@ class Worker
 
     @ws.onclose = lambda do |event|
       Rails.logger.info(
-        "Disconnected from blockchain.info WebSocket. #{event.code} #{event.reason}")
-      @ws = nil
+        "WebSocket: disconnected: #{event.code} #{event.reason}")
+      reconnect
     end
   end
 
@@ -34,9 +59,14 @@ class Worker
   end
     
   def subscribe_address(address)
-    message = '{"op":"addr_sub", "addr":"' + address + '"}'
-    @ws.send(message)
+    send_json(op: 'addr_sub', addr: address)
     Rails.logger.info("Subscribing to address #{address}")
+  end
+
+  def send_json(hash)
+    if @ws
+      @ws.send(hash.to_json)
+    end
   end
 
   def handle_message(json)
