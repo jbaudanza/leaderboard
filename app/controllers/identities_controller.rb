@@ -13,7 +13,7 @@ class IdentitiesController < ApplicationController
   end
 
   def refresh
-    @identity = Identity.find(params[:id])
+    @identity = Identity.find_by_param!(params[:id])
     @identity.refresh
     render :json => @identity
   end
@@ -23,7 +23,7 @@ class IdentitiesController < ApplicationController
   end
   
   def show
-    @identity = Identity.find(params[:id])
+    @identity = Identity.find_by_param!(params[:id])
     render :json => @identity
   end
 end

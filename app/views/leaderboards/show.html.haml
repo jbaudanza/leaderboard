@@ -14,9 +14,10 @@
 .content
   %ul.leaderboard
     - @identities.each_with_index do |identity, index|
-      %li(data-id="#{identity.id}" class="#{'selected' if identity == @identity}")
-        = identity.rank
-        = identity.name
+      %li(data-id="#{identity.to_param}" class="#{'selected' if identity == @identity}")
+        =link_to name_path(identity.name) do
+          = identity.rank
+          = identity.name
 
   #profile
     .balance

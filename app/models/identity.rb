@@ -14,6 +14,14 @@ class Identity < ActiveRecord::Base
     where('balance IS NOT NULL').order('balance DESC')
   }
   
+  def to_param
+    name
+  end
+
+  def self.find_by_param!(param)
+    find_by_name!(param)
+  end
+
   def update_balance
     total = self.addresses.sum do |address|
       address.update_balance

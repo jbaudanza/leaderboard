@@ -40,25 +40,17 @@ jQuery ->
 
   undefined
 
+  fetchProfile = (name) ->
+    $.getJSON "/identities/#{name}.json", (json) ->
+      populateProfile(json)
+
   # Populate the profile with the selected row
   id = $leaderboard.find('.selected').data('id')
-  $.getJSON "/identities/#{id}.json", (json) ->
-    populateProfile(json)
+  fetchProfile(id)
 
   #
   # Setup behaviors
   #
-  $leaderboard.on 'click', 'li', ->
-    $leaderboard.find('li').removeClass('selected')
-
-    id = $(this).addClass('selected').data('id')
-    if id
-      $profile.show()
-      $.getJSON "/identities/#{id}.json", (json) ->
-        populateProfile(json)
-    else
-      $profile.hide()
-
   $profile.on 'click', '.refresh', ->
     id = $leaderboard.find('.selected').data('id')
     $.post "/identities/#{id}/refresh", (json) ->
@@ -73,3 +65,15 @@ jQuery ->
       autoOpen: false
       modal: true
       width: 500)
+
+  app = Davis ->
+    @get '/:twitter_handle', (request) ->
+      $leaderboard.find('li').removeClass('selected')
+
+      name = request.params['twitter_handle']
+
+      $leaderboard.find("li[data-id=#{name}]").addClass('selected')
+      $profile.show()
+      fetchProfile(name)
+
+  app.start()
