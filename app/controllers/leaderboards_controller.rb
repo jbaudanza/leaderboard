@@ -3,7 +3,7 @@ class LeaderboardsController < ApplicationController
       @identities = Identity.leaderboard
           
     if params[:name]
-      @identity = Identity.where(['LOWER(name) = ?', params[:name].downcase]).first!  
+      @identity = Identity.find_by_param!(params[:name])
     else
       @identity = @identities.first
     end

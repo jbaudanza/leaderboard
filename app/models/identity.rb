@@ -19,7 +19,7 @@ class Identity < ActiveRecord::Base
   end
 
   def self.find_by_param!(param)
-    find_by_name!(param)
+    where(['LOWER(name) = ?', param.downcase]).first!
   end
 
   def update_balance
