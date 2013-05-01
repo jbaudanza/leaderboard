@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     session[:access_secret] = request.env['omniauth.auth']['credentials']['secret']
 
     @user = client.user(include_entities: true)
-    @identity = Identity.find_or_create_by_name(@user.name)
+    @identity = Identity.find_or_create_by_name(@user.screen_name)
     redirect_to name_url(@identity.name)
   end
 
