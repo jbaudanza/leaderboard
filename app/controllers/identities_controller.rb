@@ -1,7 +1,13 @@
 class IdentitiesController < ApplicationController
   def create
     @identity = Identity.new(params[:identity])
-    @identity.save!
+
+    existing = Identity.find_by_name(@identity.name)
+    if existing
+      @identity = existing
+    else
+      @identity.save!
+    end
 
     redirect_to name_url(@identity.name)
   end
