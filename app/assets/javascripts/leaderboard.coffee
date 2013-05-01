@@ -22,9 +22,10 @@ jQuery ->
       addLi("This user hasn't verified any wallet addresses.", 'empty')
 
     $dialog.find('.validation-address').text(json['validation_address'])
-
-    $dialog.find('img.qr-code').attr(
-        'src', "/qr_codes/#{json['validation_address']}")
+    
+      # body...
+    if json['validation_address']
+      $dialog.find('img.qr-code').attr('src', "/qr_codes/#{json['validation_address']}")
 
     twitterHandle = json['name']
 
