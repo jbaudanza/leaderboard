@@ -6,11 +6,10 @@
   .tagline
     put your bitcoin where your twitter is
   
-  .signup
-    .h2 Join the Leaderboard
-    
-    =link_to '/auth/twitter' do
-      = image_tag "sign-in-with-twitter-gray.png"
+  =link_to '/auth/twitter', :class => 'signup' do
+    %i.icon-twitter.bird
+    Add your twitter handle
+
     
 .content
   %ul.leaderboard
