@@ -6,7 +6,7 @@ gem 'pg'
 gem 'haml'
 gem 'thin'
 gem 'bitcoin-ruby', :require => 'bitcoin'
-gem 'faye-websocket', :git => 'git://github.com/jbaudanza/faye-websocket-ruby.git'
+gem 'faye-websocket'
 
 # Gems for QR codes
 gem 'barby', :require => false
