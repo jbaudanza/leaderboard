@@ -26,7 +26,7 @@ class Worker
 
   def connect
     Rails.logger.info("WebSocket: connecting")
-    @ws = Faye::WebSocket::Client.new('ws://ws.blockchain.info/inv')
+    @ws = Faye::WebSocket::Client.new('wss://ws.blockchain.info/inv')
 
     @ws.onopen = lambda do |event|
       Rails.logger.info("WebSocket: connected")
